@@ -1,0 +1,30 @@
+services:
+  api:
+    build: .
+    container_name: compliance_rag_api
+    command: uvicorn src.api:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./raw_docs:/app/raw_docs
+      - ./src:/app/src
+    restart: unless-stopped
+
+  ui:
+    build: .
+    container_name: compliance_rag_ui
+    command: streamlit run src/app.py --server.address=0.0.0.0 --server.port=8501
+    ports:
+      - "8502:8501"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./raw_docs:/app/raw_docs
+      - ./src:/app/src
+    depends_on:
+      - api
+    restart: unless-stopped

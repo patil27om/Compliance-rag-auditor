@@ -1,0 +1,19 @@
+[
+  {
+    "test_id": "TC-001",
+    "query": "What is the minimum explainability index required for automated credit scoring models?",
+    "expected_citation": "Section 101",
+    "expected_keywords": [
+      "92%",
+      "explainability index"
+    ]
+  },
+  {
+    "test_id": "TC-002",
+    "query": "Within how many days must risk weights be disclosed to borrowers under the current regulation?",
+    "expected_citation": "Section 101",
+    "expected_keywords": [
+      "14 business days"
+    ]
+  }
+]
